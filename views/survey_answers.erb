@@ -1,0 +1,30 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answers</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @survey.questions().each() do |question| %>
+    <tr>
+      <td>
+        <%= question.question() %>
+      </td>
+      <td>
+        <%if question.answer()%>
+          <%= question.answer() %>
+          <% else %>
+        <p>No current answers. Please check back later</p>
+        
+        <% end %>
+
+      </td>
+      <td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <% else %>

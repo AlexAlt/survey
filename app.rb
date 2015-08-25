@@ -68,3 +68,9 @@ patch("/questions/:id") do
   question.update({:answer => answer})
   erb(:success)
 end
+
+get("/surveys/:id/answers") do
+  id = params.fetch("id").to_i()
+  @survey = Survey.find(id)
+  erb(:survey_answers)
+end
