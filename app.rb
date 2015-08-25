@@ -56,3 +56,15 @@ get("/surveys") do
   @surveys = Survey.all()
   erb(:surveys)
 end
+
+get("/surveys/:id") do
+  @survey = Survey.find(params.fetch("id").to_i())
+  erb(:survey)
+end
+
+patch("/questions/:id") do
+  question = Question.find(params.fetch("id").to_i)
+  answer = params.fetch("answer")
+  question.update({:answer => answer})
+  erb(:success)
+end

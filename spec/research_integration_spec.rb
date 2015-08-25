@@ -45,3 +45,11 @@ end
 #     expect(page).to have_content("The Banana Enjoyment Survey")
 #   end
 # end
+
+describe('the path to the surveys page', {:type => :feature}) do
+  it('brings user to a list of surveys') do
+    visit('/')
+    click_link("Take a survey")
+    expect(page).to have_content("Take a survey")
+  end
+end
