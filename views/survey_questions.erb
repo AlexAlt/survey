@@ -1,0 +1,45 @@
+<h1><%= @survey.title() %></h1>
+
+<div class="form-group">
+  <form action="/surveys/<%= @survey.id() %>/questions" method="post">
+    <label for="question"></label>
+    <input id="question" name="question" type="text" placeholder="Add Question" required="true" class="form-control">
+    <br>
+    <button type="submit" class="btn btn-info">Add Question</button>
+  </form>
+</div>
+
+<% if @survey.questions().any?() %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @survey.questions().each() do |question| %>
+    <tr>
+      <td>
+        <%= question.question() %>
+      </td>
+      <td>
+        <td><form action = "/questions/<%= question.id() %>" method="post">
+          <div class="form-group">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn-danger">Delete</button>
+          </div>
+        </form></td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <% else %>
+
+  <p> No current Questions.  Let's create some! </p>
+
+  <% end %>
+
+<p><a href="/admin">Back</a></p>

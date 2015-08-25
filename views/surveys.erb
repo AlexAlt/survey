@@ -1,0 +1,28 @@
+<h1> Take a survey </h1>
+
+
+<% if @surveys.any? %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @surveys.each() do |survey| %>
+    <tr>
+      <td>
+        <a href="/surveys/<%= survey.id() %>"><%= survey.title() %></a>
+      </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+  <% else %>
+
+  <p> No surveys currently available. Check back soon!  </p>
+
+  <% end %>

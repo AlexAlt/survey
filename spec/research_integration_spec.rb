@@ -22,3 +22,26 @@ describe('the admin homepage', {:type => :feature}) do
     expect(page).to have_content("The Banana Enjoyment Survey")
   end
 end
+
+describe('adding questions to a survey', {:type => :feature}) do
+  it('allows a user to add a question to a survey') do
+    test_survey = Survey.new({:title => "The Banana Enjoyment Survey", :id=> nil})
+    test_survey.save()
+    visit("/surveys/#{test_survey.id}/questions")
+    fill_in("question", :with => "Do you like dark spots on your Banana?")
+    click_button("Add Question")
+    expect(page).to have_content("Do you like dark spots on your Banana?")
+  end
+end
+
+# describe('removing a question from a survey', {:type => :feature}) do
+#   it('removes a question from a specific survey') do
+#     test_survey = Survey.new({:title => "The Banana Enjoyment Survey", :id=> nil})
+#     test_survey.save()
+#     test_question = Question.new({:question => "Do you like dark spots on your Banana?", :survey_id => test_survey.id(), :answer => nil, :id => nil})
+#     test_question.save()
+#     visit("/surveys/#{test_survey.id()}/questions")
+#     click_button("Delete")
+#     expect(page).to have_content("The Banana Enjoyment Survey")
+#   end
+# end
