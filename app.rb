@@ -74,3 +74,8 @@ get("/surveys/:id/answers") do
   @survey = Survey.find(id)
   erb(:survey_answers)
 end
+
+get("/questions/:id") do
+  @question = Question.find(params.fetch("id").to_i())
+  erb(:success)
+end
